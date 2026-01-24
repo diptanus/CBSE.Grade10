@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question Papers by Subject</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f6fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: #1e40af;
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.3rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+      margin: 0.5rem 0;
+      color: #1e40af;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 1.2rem;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 0.55rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>CBSE Question Papers</h1>
+    <p>Select a subject to view papers and answer keys</p>
+  </header>
+
+  <main>
+    <section class="grid">
+
+      <div class="card">
+        <h2>📐 Mathematics</h2>
+        <p>Board papers, sample papers and solutions.</p>
+        <a href="maths.html">Open</a>
+      </div>
+
+      <div class="card">
+        <h2>🔬 Science</h2>
+        <p>Physics, Chemistry & Biology papers.</p>
+        <a href="science.html">Open</a>
+      </div>
+
+      <div class="card">
+        <h2>📘 English</h2>
+        <p>Literature, grammar and writing papers.</p>
+        <a href="english.html">Open</a>
+      </div>
+
+      <div class="card">
+        <h2>🖋️ Hindi</h2>
+        <p>All sets with marking schemes.</p>
+        <a href="hindi.html">Open</a>
+      </div>
+
+      <div class="card">
+        <h2>🌍 Social Science</h2>
+        <p>History, Civics, Geography & Economics.</p>
+        <a href="social-science.html">Open</a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    © 2026 • Practice Papers Hub
+  </footer>
+
+</body>
+</html>
