@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Area Invariance Demo</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #1a1a1a; color: white; padding: 20px; }
+        svg { background: #000; border-radius: 8px; margin: 20px; max-width: 100%; height: auto; }
+        .controls { background: #333; padding: 20px; border-radius: 12px; width: 400px; }
+        input { width: 100%; cursor: pointer; }
+        .stats { display: flex; justify-content: space-between; margin-top: 10px; font-mono; }
+        .highlight { color: #8bc34a; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>The Invariant Green Area</h2>
+    <p>Drag the slider to move the common point. Watch how the green area stays constant.</p>
+
+    <svg id="canvas" width="600" height="400" viewBox="0 -250 600 450">
+        <g id="geometry" transform="translate(50, 0)">
+            <rect id="rect" fill="#2c4c74" stroke="white" stroke-width="2" />
+            <path id="qCircle" fill="none" stroke="white" stroke-width="2" />
+            <path id="greenArea" fill="#3e522d" stroke="white" stroke-width="2" />
+            <path id="semi1" fill="black" stroke="white" stroke-width="2" />
+            <path id="semi2" fill="black" stroke="white" stroke-width="2" />
+            <line id="divider" stroke="white" stroke-width="1" stroke-dasharray="4" />
+        </g>
+    </svg>
+
+    <div class="controls">
+        <label>Change $r_1$ (Common Point Position):</label>
+        <input type="range" id="r1Slider" min="0.5" max="4.5" step="0.01" value="2">
+        <div class="stats">
+            <div>Rect Area: <span id="rectAreaDisp">4.00</span> cm²</div>
+            <div>Green Area: <span id="greenAreaDisp" class="highlight">3.14</span> cm²</div>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('r1Slider');
+        const rectArea = 4; // Constant area as per your diagram
+        const scale = 60;   // Visual scaling factor
+
+        function update() {
+            const r1 = parseFloat(slider.value);
+            const r2 = (rectArea / 4) / r1; // Solve for r2 to keep area constant
+
+            const w = 2 * r1 * scale;
+            const h = 2 * r2 * scale;
+            const R = (r1 + r2) * scale;
+
+            // Update Rectangle
+            const rect = document.getElementById('rect');
+            rect.setAttribute('width', w);
+            rect.setAttribute('height', h);
+            rect.setAttribute('y', 0);
+
+            // Update Small Semicircle 1
+            const semi1 = document.getElementById('semi1');
+            semi1.setAttribute('d', `M 0,0 A ${r1*scale} ${r1*scale} 0 0 1 ${w} 0 Z`);
+
+            // Update Small Semicircle 2
+            const semi2 = document.getElementById('semi2');
+            semi2.setAttribute('d', `M ${w},0 A ${r2*scale} ${r2*scale} 0 0 1 ${w + 2*r2*scale} 0 Z`);
+
+            // Update Green Area (Large Semicircle)
+            const green = document.getElementById('greenArea');
+            green.setAttribute('d', `M 0,0 A ${R} ${R} 0 0 1 ${2*R} 0 L ${w + 2*r2*scale},0 
+                                     A ${r2*scale} ${r2*scale} 0 0 0 ${w} 0
+                                     A ${r1*scale} ${r1*scale} 0 0 0 0 0 Z`);
+
+            // Update Quarter Circle (Bottom Right)
+            const qCircle = document.getElementById('qCircle');
+            qCircle.setAttribute('d', `M ${w},${h} A ${h} ${h} 0 0 0 ${w + h} 0 L ${w},0 Z`);
+
+            // Update Divider
+            const div = document.getElementById('divider');
+            div.setAttribute('x1', w); div.setAttribute('y1', -150);
+            div.setAttribute('x2', w); div.setAttribute('y2', h);
+
+            // Update Text
+            document.getElementById('greenAreaDisp').innerText = (Math.PI * r1 * r2).toFixed(2);
+        }
+
+        slider.addEventListener('input', update);
+        update();
+    </script>
+</body>
+</html>
