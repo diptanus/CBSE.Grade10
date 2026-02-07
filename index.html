@@ -100,6 +100,11 @@
 </head>
 
 <body>
+  <script>
+    if (localStorage.getItem("cbse_auth") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
 
   <header>
     <h1>My Knowledge Hub</h1>
