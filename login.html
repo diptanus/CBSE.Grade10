@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | My Knowledge Hub</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #0f172a;
+  }
+
+  .box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 320px;
+    text-align: center;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #1e3a8a;
+  }
+
+  input, button {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+  }
+
+  button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #1e40af;
+  }
+
+  .error {
+    color: red;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Login</h2>
+  <p>Enter password to access the site</p>
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <div class="error" id="error"></div>
+</div>
+
+<script>
+  const CORRECT_PASSWORD = "cbse2026"; // 🔴 CHANGE THIS TO YOUR OWN PASSWORD
+
+  function login() {
+    const input = document.getElementById("password").value;
+    if (input === CORRECT_PASSWORD) {
+      localStorage.setItem("cbse_auth", "true");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("error").textContent = "Wrong password!";
+    }
+  }
+</script>
+
+</body>
+</html>
